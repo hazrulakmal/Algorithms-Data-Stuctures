@@ -43,5 +43,37 @@ class Linkedlist:
     
     def get_back(self):
         return self.tail
+    
+class Queue:
+    
+    def __init__(self):
+        self.n = 0
+        self.head = None
+        self.tail = None
+        
+    def __len__(self): #return the length of a queue
+        return self.n
+    
+    def enqueue(self, new_item):
+        if self.head == None and self.tail == None:
+            node = Node(new_item, None)
+            self.head = node
+            self.tail = node
+            self.n += 1
+            
+        else:
+            node = Node(new_item, None)
+            self.tail.next = node
+            self.tail = node
+            self.n += 1
+            
+    def deque(self):
+        node = self.head
+        self.head = self.head.next
+        self.n -= 1
+        return node.item
+    
+    def get_first(self):
+        return self.head.item
             
             
