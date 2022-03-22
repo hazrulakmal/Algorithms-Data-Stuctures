@@ -30,5 +30,3 @@ def merge(left, right):
     return sort
 
 
-#Heap Sort Algorithm (Inplace, Data Structure, Sorting Problem)
-
