@@ -14,7 +14,7 @@ function nonrandom(A)
     return x,y
 end
 
-#worst-case analysis. each step requires constant time except for the while loop. worst scenario is when the list is A = [x,..,x,y,...y] the loop is executed omega(n) times
+#worst-case analysis. each step requires constant time except for the while loop. worst scenario is when the list is A = [x,..,x,y,...y] the loop is executed theta(n) times
 
 A = [2,2,2,3,2,3,3,3]
 nonrandom(A)

@@ -15,7 +15,7 @@ class Linkedlist:
         self.tail = None
         
     def isEmpty(self):
-        return self.head == None and self.tail == None
+        return self.head == None or self.tail == None
     
     def add(self, v):
         
@@ -43,6 +43,24 @@ class Linkedlist:
     
     def get_back(self):
         return self.tail
+    
+    def remove_end(self):
+        if self.isEmpty() == False:
+            head = self.head
+            before = None
+            while head != self.tail:
+                before = head
+                head = head.next_pos
+            if before == None:
+                self.tail = None
+                self.head = None
+            else:
+                before.next_pos = None
+                self.tail = before
+            
+    
+    def remove_front(self):
+        self.head = self.head.next_pos
     
 class Queue:
     
