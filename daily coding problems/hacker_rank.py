@@ -47,21 +47,21 @@ if __name__ == '__main__':
 
 # Your task is to determine the winner of the game and their score.
 
-def minion_game(string):
-    vowels = 'AEIOU'
+def minion_game(string): 
+    vowels = 'AEIOU' 
     kevin_score = 0
-    stuart_score = 0
-    for i in range(len(string)):
-        if string[i] in vowels:
-            kevin_score += (len(string) - i)
-        else:
-            stuart_score += (len(string) - i)
-    if kevin_score > stuart_score:
-        print("Kevin", kevin_score)
-    elif kevin_score < stuart_score:
-        print("Stuart", stuart_score)
-    else:
-        print("Draw")
+    stuart_score = 0 
+    for i in range(len(string)): 
+        if string[i] in vowels: #if the letter in the string is a vowel
+            kevin_score += (len(string) - i) #add the score to kevin's score
+        else: #if the letter in the string is not a vowel
+            stuart_score += (len(string) - i) #add the score to stuart's score
+    if kevin_score > stuart_score: 
+        print("Kevin", kevin_score) 
+    elif kevin_score < stuart_score: 
+        print("Stuart", stuart_score) 
+    else: 
+        print("Draw") 
 
 
 #factorial recursive funtion given input n
@@ -77,10 +77,14 @@ def factorial(n):
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
+        # Dictionary to store the value and its index
         d = {}
         for i, j in enumerate(nums):
+            # Calculate the remaining value
             r = target - j
+            # If the remaining value is in the dictionary, then return the index of the remaining value and the current index
             if r in d: return [d[r], i]
+            # If the remaining value is not in the dictionary, then add the current value and index into the dictionary
             d[j] = i
 
 #2. Add Two Numbers
@@ -97,26 +101,26 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode(0)
-        cur = dummy
-        extra_val = 0
+        dummy = ListNode(0) #create a dummy node to return
+        cur = dummy #set cursor to dummy
+        extra_val = 0 #set extra value to 0
         
-        while l1 or l2 or extra_val:
-            l1val = l1.val if l1 else 0 #incase if one linked list is shorter than the other
-            l2val = l2.val if l2 else 0
+        while l1 or l2 or extra_val: #while one of the linked lists or extra value is non-zero
+            l1val = l1.val if l1 else 0 #set l1val to 0 if l1 is None else l1.val
+            l2val = l2.val if l2 else 0 #set l2val to 0 if l2 is None else l2.val
 
             #computation
-            v = l1val + l2val + extra_val
-            extra_val = v // 10
-            final_v = v % 10
-            cur.next = ListNode(final_v)
+            v = l1val + l2val + extra_val #add l1val, l2val, and extra_val
+            extra_val = v // 10 #set extra_val to v // 10
+            final_v = v % 10 #set final_v to v % 10
+            cur.next = ListNode(final_v) #set cursor.next to a new ListNode with value final_v
 
             #update cursor
-            cur = cur.next
-            l1 = l1.next if l1 else None #also handles llinked list length 
-            l2 = l2.next if l2 else None
+            cur = cur.next #set cursor to cursor.next
+            l1 = l1.next if l1 else None #set l1 to l1.next if l1 is not None else None
+            l2 = l2.next if l2 else None #set l2 to l2.next if l2 is not None else None
 
-        return dummy.next
+        return dummy.next #return dummy.next
     
 # Merger two sorted linked lists
 # Given two sorted linked lists, merge them together in ascending order and return a reference to the merged list.
@@ -154,6 +158,58 @@ class Solution:
         # Return the head of the merged list
         return dummy.next
 
+#30 days of code
 
+# Day 2: Operators
+# Given the meal price (base cost of a meal), tip percent (the percentage of the meal price being added as tip), and tax percent (the percentage of the meal price being added as tax) for a meal, find and print the meal's total cost.
+# Round the result to the nearest integer.
 
-            
+import math
+import os
+import random
+import re
+import sys
+
+def solve(meal_cost, tip_percent, tax_percent):
+    # Write your code here
+    tips = meal_cost * tip_percent / 100
+    tax = meal_cost * tax_percent / 100
+    print(round(meal_cost + tips + tax)) 
+
+if __name__ == '__main__':
+    meal_cost = float(input().strip())
+
+    tip_percent = int(input().strip())
+
+    tax_percent = int(input().strip())
+
+    solve(meal_cost, tip_percent, tax_percent)
+
+# Day 8: Dictionaries and Maps
+# Given n names and phone numbers, assemble a phone book that maps friends' names to their respective phone numbers.
+# You will then be given an unknown number of names to query your phone book for.
+# For each name queried, print the associated entry from your phone book on a new line in the form name=phoneNumber;
+# if an entry for name is not found, print Not found instead.
+# Note: Your phone book should be a Dictionary/Map/HashMap data structure.
+
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+
+n = int(input())
+
+contact_details = dict()
+for i in range(n):
+    name_num = input().split()
+    name = name_num[0]
+    num = name_num[1]
+    contact_details[name] = num
+    
+
+while True:
+    try:
+        name_to_query = str(input())
+        if name_to_query in contact_details:
+            print(f'{name_to_query}={contact_details[name_to_query]}')
+        else:
+            print( "Not found")
+    except EOFError:
+        break        
