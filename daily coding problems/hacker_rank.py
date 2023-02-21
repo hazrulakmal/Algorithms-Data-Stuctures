@@ -213,3 +213,58 @@ while True:
             print( "Not found")
     except EOFError:
         break        
+
+
+#Day 10: Binary Numbers
+# Given a base-10 integer, n, convert it to binary (base-2).
+# Then find and print the base-10 integer denoting the maximum number of consecutive 1's in n's binary representation.
+
+import math
+import os
+import random
+import re
+import sys
+
+def maxConsecutiveOnes(n):
+    # Write your code here
+    binary = bin(n)[2:]
+    max_ones = 0
+    count = 0
+    for i in range(len(binary)):
+        if binary[i] == '1':
+            count += 1
+        else:
+            count = 0
+        max_ones = max(max_ones, count)
+    return 
+
+#Day 11: 2D Arrays
+# Given a 6x6 2D Array, arr:
+# 1 1 1 0 0 0
+# 0 1 0 0 0 0
+# 1 1 1 0 0 0
+# 0 0 0 0 0 0
+# 0 0 0 0 0 0
+# 0 0 0 0 0 0
+# We define an hourglass in A to be a subset of values with indices falling in this pattern in arr's graphical representation:
+# a b c
+#   d
+# e f g
+# There are 16 hourglasses in arr, and an hourglass sum is the sum of an hourglass' values.
+# Calculate the hourglass sum for every hourglass in arr, then print the maximum hourglass sum.
+
+import math
+import os
+import random
+import re
+import sys
+
+def hourglassSum(arr):
+    # Write your code here
+    max_sum = -63 # setting max sum to -63
+    for i in range(4): # iterating over the first four rows
+        for j in range(4): # iterating over the first four columns
+            sum = arr[i][j] + arr[i][j+1] + arr[i][j+2] + arr[i+1][j+1] + arr[i+2][j] + arr[i+2][j+1] + arr[i+2][j+2] # adding all the values in the hourglass
+            max_sum = max(max_sum, sum) # updating maximum sum if required
+    return max_sum
+
