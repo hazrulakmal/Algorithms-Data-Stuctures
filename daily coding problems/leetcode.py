@@ -101,10 +101,84 @@ def almostSorted(arr):
             print('no')
 
 
+# 5. Longest Palindromic Substring
+# Given a string s, return the longest palindromic substring in s.
+# Example 1:
+# Input: s = "babad"
+# Output: "bab"
+# Note: "aba" is also a valid answer.
+# Example 2:
+# Input: s = "cbbd"
+# Output: "bb"
 
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
 
+        def search_palindrome(left, right):
+            while left >= 0 and right < len(s) and s[right] == s[left]:
+                left -= 1
+                right += 1
+            return s[left+1:right]
 
+        result = ""
 
+        if len(s) < 2 or s[::-1] == s:
+            return s
+
+        for i in range(len(s)-1):
+            palindrome_sub_even = search_palindrome(i, i+1)
+            palindrome_sub_odd = search_palindrome(i, i+2)
+            result = max(result, palindrome_sub_even, palindrome_sub_odd, key=len)
+
+        return result
+    
+# 9. Palindrome Number
+# Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+# Follow up: Could you solve it without converting the integer to a string?
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+        elif x < 10:
+            return True
+        else:
+            x = str(x)
+            return x == x[::-1]
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+
+        def recursive_palindrome(word):
+            if len(word) < 2: return True
+            if word[0] != word[-1]: return False
+            return recursive_palindrome(word[1:-1])
+
+        word = str(x)
+        return recursive_palindrome(word)
+
+#234. Palindrome Linked List
+#Given the head of a singly linked list, return true if it is a palindrome.
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        number_string = ""
+
+        cur = head
+        while cur:
+            number = cur.val
+            number_string += str(number)
+            cur = cur.next
+
+        if number_string == number_string[::-1] : 
+            return True
+        else:
+            return False
 
 
 
