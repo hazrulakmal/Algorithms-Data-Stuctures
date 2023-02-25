@@ -181,7 +181,76 @@ class Solution:
             return False
 
 
+#94. Binary Tree Inorder Traversal
+#Given the root of a binary tree, return the inorder traversal of its nodes' values.
 
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # If root is None then return an empty array
+        if root is None:
+            return []
+        else:
+            # Recurse on the left subtree, then the root node, then the right subtree
+            return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
+        
+#206. Reverse Linked List
+#Given the head of a singly linked list, reverse the list, and return the reversed list.
+#Recursive solution
 
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None or head.next is None:
+            # If the list is empty or has only one node, no change is needed, so just return the original head.
+            return head
+        else:
+            # Reverse the sublist whose head is head.next
+            new_head = self.reverseList(head.next)
+            # head.next is the tail of the reversed sublist. Point the tail to head, forming the original sublist.
+            head.next.next = head
+            # Set the next of head to None, breaking the link of the original sublist.
+            head.next = None
+            # Return the new head of the reversed sublist.
+            return new_head
+        
+#iterative solution
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        cur = head
+        while cur:
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
 
+        return prev
 
+#100. Same Tree
+#Given the roots of two binary trees p and q, write a function to check if they are the same or not.
+#Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
+
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        # If both trees are empty, they are the same
+        if p is None and q is None:
+            return True
+        # If one of the trees is empty, they are not the same
+        elif p is None or q is None:
+            return False
+        # If the values of the roots are the same, check if the left and right subtrees are the same
+        elif p.val == q.val:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        # If the values of the roots are not the same, the trees are not the same
+        else:
+            return False
+
+#104. Maximum Depth of Binary Tree
+#Given the root of a binary tree, return its maximum depth.
+#A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+        else:
+            return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
